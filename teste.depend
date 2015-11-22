@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1448172156 source:d:\pasta do thiago\utfpr\prog\c++\allegro\teste\main.cpp
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"personagens.hpp"
+
+1447793900 d:\pasta do thiago\utfpr\prog\c++\allegro\teste\personagens.hpp
+
+1448210997 source:c:\users\thiago\desktop\final\teste\inimigo.cpp
+	"includes.h"
+
+1448205857 c:\users\thiago\desktop\final\teste\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"variaveis_globais.hpp"
+
+1448205752 c:\users\thiago\desktop\final\teste\declaracoes.hpp
+	"includes.h"
+
+1448206013 c:\users\thiago\desktop\final\teste\personagem.hpp
+
+1448211033 c:\users\thiago\desktop\final\teste\inimigo.hpp
+
+1448210362 c:\users\thiago\desktop\final\teste\projetil.hpp
+
+1448209947 c:\users\thiago\desktop\final\teste\estrelas.hpp
+	"variaveis_globais.hpp"
+
+1448206999 c:\users\thiago\desktop\final\teste\variaveis_globais.hpp
+
+1448205905 source:c:\users\thiago\desktop\final\teste\main.cpp
+	"includes.h"
+
+1448205912 source:c:\users\thiago\desktop\final\teste\personagem.cpp
+	"includes.h"
+
+1448210362 source:c:\users\thiago\desktop\final\teste\projetil.cpp
+	"includes.h"
+
+1448210048 source:c:\users\thiago\desktop\final\teste\estrelas.cpp
+	"includes.h"
+
