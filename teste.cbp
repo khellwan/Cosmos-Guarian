@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Items.cpp" />
+		<Unit filename="Items.h" />
 		<Unit filename="estrelas.cpp" />
 		<Unit filename="estrelas.hpp" />
 		<Unit filename="includes.h" />

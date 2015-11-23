@@ -58,3 +58,147 @@
 1448210048 source:c:\users\thiago\desktop\final\teste\estrelas.cpp
 	"includes.h"
 
+1448191738 source:c:\users\lucas\desktop\final-master\final-master\estrelas.cpp
+	"includes.h"
+
+1448214004 c:\users\lucas\desktop\final-master\final-master\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"variaveis_globais.hpp"
+	"items.h"
+
+1448191738 c:\users\lucas\desktop\final-master\final-master\personagem.hpp
+
+1448191738 c:\users\lucas\desktop\final-master\final-master\projetil.hpp
+
+1448191738 c:\users\lucas\desktop\final-master\final-master\inimigo.hpp
+
+1448191738 c:\users\lucas\desktop\final-master\final-master\estrelas.hpp
+	"variaveis_globais.hpp"
+
+1448191738 c:\users\lucas\desktop\final-master\final-master\variaveis_globais.hpp
+
+1448216727 source:c:\users\lucas\desktop\final-master\final-master\inimigo.cpp
+	"includes.h"
+
+1448215833 source:c:\users\lucas\desktop\final-master\final-master\main.cpp
+	"includes.h"
+
+1448191738 source:c:\users\lucas\desktop\final-master\final-master\personagem.cpp
+	"includes.h"
+
+1448191738 source:c:\users\lucas\desktop\final-master\final-master\projetil.cpp
+	"includes.h"
+
+1448215088 c:\users\lucas\desktop\final-master\final-master\items.h
+
+1448219358 source:c:\users\lucas\desktop\final-master\final-master\items.cpp
+	"includes.h"
+
+1448195338 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\estrelas.cpp
+	"includes.h"
+
+1448217604 c:\users\thiago\desktop\amin\final-master\final-master\final-master\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"variaveis_globais.hpp"
+	"items.h"
+
+1448241131 c:\users\thiago\desktop\amin\final-master\final-master\final-master\personagem.hpp
+
+1448195338 c:\users\thiago\desktop\amin\final-master\final-master\final-master\projetil.hpp
+
+1448195338 c:\users\thiago\desktop\amin\final-master\final-master\final-master\inimigo.hpp
+
+1448195338 c:\users\thiago\desktop\amin\final-master\final-master\final-master\estrelas.hpp
+	"variaveis_globais.hpp"
+
+1448195338 c:\users\thiago\desktop\amin\final-master\final-master\final-master\variaveis_globais.hpp
+
+1448240741 c:\users\thiago\desktop\amin\final-master\final-master\final-master\items.h
+
+1448241037 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\inimigo.cpp
+	"includes.h"
+
+1448240493 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\items.cpp
+	"includes.h"
+
+1448242059 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\main.cpp
+	"includes.h"
+
+1448241127 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\personagem.cpp
+	"includes.h"
+
+1448239248 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\projetil.cpp
+	"includes.h"
+
+1448195338 source:c:\users\thiago\desktop\final\final\estrelas.cpp
+	"includes.h"
+
+1448217604 c:\users\thiago\desktop\final\final\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"variaveis_globais.hpp"
+	"items.h"
+
+1448241131 c:\users\thiago\desktop\final\final\personagem.hpp
+
+1448195338 c:\users\thiago\desktop\final\final\projetil.hpp
+
+1448195338 c:\users\thiago\desktop\final\final\inimigo.hpp
+
+1448195338 c:\users\thiago\desktop\final\final\estrelas.hpp
+	"variaveis_globais.hpp"
+
+1448300340 c:\users\thiago\desktop\final\final\variaveis_globais.hpp
+
+1448300779 c:\users\thiago\desktop\final\final\items.h
+	"includes.h"
+
+1448241037 source:c:\users\thiago\desktop\final\final\inimigo.cpp
+	"includes.h"
+
+1448300280 source:c:\users\thiago\desktop\final\final\items.cpp
+
+1448300518 source:c:\users\thiago\desktop\final\final\main.cpp
+	"includes.h"
+
+1448241127 source:c:\users\thiago\desktop\final\final\personagem.cpp
+	"includes.h"
+
+1448239248 source:c:\users\thiago\desktop\final\final\projetil.cpp
+	"includes.h"
+

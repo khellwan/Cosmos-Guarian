@@ -15,10 +15,6 @@ public:
     int borda_y;
     int pontos;
 
-    void DesenhaPersonagem()
-    {
-        al_draw_bitmap(bmp, x, y, 0);
-    }
     void MoveCima()
     {
         y -= velocidade;
@@ -56,5 +52,6 @@ public:
 };
 
 void InitPersonagem(Personagem &personagem_principal);
+void DesenhaPersonagem(Personagem personagem_principal);
 
 #endif // PERSONAGEM_HPP_INCLUDED

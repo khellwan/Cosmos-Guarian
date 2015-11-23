@@ -45,7 +45,7 @@ void DesenhaBalas (Projetil balas[], int tamanho)
     for (i = 0; i < tamanho; i++)
     {
         if (balas[i].ativo)
-            al_draw_bitmap(balas[i].bmp, balas[i].x, balas[i].y, 0);
+             al_draw_bitmap(balas[i].bmp, balas[i].x, balas[i].y, 0); //mem leak
     }
 }
 void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_tamanho, Personagem &personagem_principal, int &dificuldade, ALLEGRO_SAMPLE *morte_inimigo)
@@ -66,7 +66,7 @@ void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_ta
                         balas[i].y < (inimigos[j].y + inimigos[j].borda_y))
                     {
                         balas[i].ativo = false;
-                        // mas como inimigo desaparece???
+
                         inimigos[j].ativo = false;
                         al_play_sample(morte_inimigo, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 

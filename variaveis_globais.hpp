@@ -6,6 +6,7 @@ const int ALTURA_T = 768;
 const int FPS = 60;
 const int NUM_BALAS = 5;
 const int NUM_INIMIGOS = 10;
+const int NUM_ITENS = 10;
 const int NUM_ESTRELAS = 100;
 const int NUM_PLANOS = 3;
 

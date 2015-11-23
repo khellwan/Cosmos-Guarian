@@ -15,6 +15,6 @@
 #include "inimigo.hpp"
 #include "estrelas.hpp"
 #include "variaveis_globais.hpp"
-
+#include "items.h"
 
 #endif // INCLUDES_H_INCLUDED

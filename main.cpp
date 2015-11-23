@@ -1,7 +1,5 @@
 #include "includes.h"
 
-
-
 int main(int argc, char *argv[])
 {
 
@@ -13,6 +11,7 @@ ALLEGRO_SAMPLE *ataque = NULL;
 ALLEGRO_SAMPLE *morte_inimigo = NULL;
 ALLEGRO_SAMPLE *morte_personagem = NULL;
 ALLEGRO_SAMPLE *hit = NULL;
+ALLEGRO_SAMPLE *item = NULL;
 ALLEGRO_AUDIO_STREAM *musica = NULL;
 
 
@@ -33,6 +32,7 @@ Personagem personagem_principal;
 Projetil* balas = new Projetil [NUM_BALAS];
 Projetil* balas_2 = new Projetil [NUM_BALAS];
 Inimigo* inimigos = new Inimigo[NUM_INIMIGOS];
+Coracao* coracoes = new Coracao[NUM_ITENS];
 Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
 
@@ -92,15 +92,34 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 // -------- FUNÇÕES INICIAIS --------
     srand(time(NULL));
     InitPersonagem(personagem_principal);
+
     InitBalas(balas, NUM_BALAS);
     InitBalas(balas_2, NUM_BALAS);
+
     InitInimigo(inimigos, NUM_INIMIGOS);
+
+    for (i = 0; i < NUM_ITENS; i++)
+        coracoes[i].InitItem();
+
     InitPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
+
     ataque = al_load_sample("laser.wav");
     morte_inimigo = al_load_sample("dead.wav");
     morte_personagem = al_load_sample("death.wav");
     hit = al_load_sample("hit.wav");
+    item = al_load_sample("item.wav");
     musica = al_load_audio_stream("trilha_sonora.ogg", 4, 1024);
+    personagem_principal.bmp = al_load_bitmap("ship.png");
+
+    for (i = 0; i < NUM_BALAS; i++)
+    {
+        balas[i].bmp = al_load_bitmap("bala.png");
+        balas_2[i].bmp = al_load_bitmap("bala.png");
+    }
+    for (i = 0; i < NUM_INIMIGOS; i++)
+        inimigos[i].bmp = al_load_bitmap("enemyRed.png");
+     for (i = 0; i < NUM_ITENS; i++)
+        coracoes[i].imagem = al_load_bitmap("heart.png");
 
 
 // __________________________________
@@ -200,9 +219,18 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 AtualizaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
                 GeraInimigos(inimigos, NUM_INIMIGOS);
                 AtualizaInimigos(inimigos, NUM_INIMIGOS);
+
                 BalaColidida(balas, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
                 BalaColidida(balas_2, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
                 InimigoColidido(inimigos, NUM_INIMIGOS, personagem_principal, hit);
+
+                for (i = 0; i < NUM_INIMIGOS; i++)
+                {
+                    coracoes[i].GeraItens(inimigos[i]);
+                    coracoes[i].AtualizaItens();
+                    coracoes[i].ItemColidido(personagem_principal, item);
+                }
+
 
                 if ((dificuldade+1)%11 == 0) // Dificuldade aumenta a cada 10 pontos.
                 {
@@ -224,10 +252,31 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 al_set_audio_stream_playing(musica, false);
                 if (teclas[ENTER])
                 {
+                    al_destroy_audio_stream(musica);
+
                     InitPersonagem(personagem_principal);
+
                     InitBalas(balas, NUM_BALAS);
                     InitBalas(balas_2, NUM_BALAS);
+
                     InitInimigo(inimigos, NUM_INIMIGOS);
+
+                    for (i = 0; i < NUM_ITENS; i++)
+                        coracoes[i].InitItem();
+
+                    personagem_principal.bmp = al_load_bitmap("ship.png");
+                    musica = al_load_audio_stream("trilha_sonora.ogg", 4, 1024);
+
+                    for (i = 0; i < NUM_BALAS; i++)
+                    {
+                        balas[i].bmp = al_load_bitmap("bala.png");
+                        balas_2[i].bmp = al_load_bitmap("bala.png");
+                    }
+                    for (i = 0; i < NUM_INIMIGOS; i++)
+                    {
+                        inimigos[i].bmp = al_load_bitmap("enemyRed.png");
+                        coracoes[i].imagem = al_load_bitmap("heart.png");
+                    }
 
                     game_over = false;
                 }
@@ -246,21 +295,13 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
             if(!game_over)
             {
-                personagem_principal.bmp = al_load_bitmap("ship.png");
-                for (i = 0; i < NUM_BALAS; i++)
-                {
-                    balas[i].bmp = al_load_bitmap("bala.png");
-                    balas_2[i].bmp = al_load_bitmap("bala.png");
-                }
-
-                for (i = 0; i < NUM_INIMIGOS; i++)
-                    inimigos[i].bmp = al_load_bitmap("enemyRed.png");
-
                 DesenhaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
-                personagem_principal.DesenhaPersonagem();
+                DesenhaPersonagem(personagem_principal);
                 DesenhaBalas(balas, NUM_BALAS);
                 DesenhaBalas(balas_2, NUM_BALAS);
                 DesenhaInimigos(inimigos, NUM_INIMIGOS);
+                for (i = 0; i < NUM_ITENS; i++)
+                    coracoes[i].DesenhaItens();
 
                 al_draw_textf(font20, al_map_rgb(255, 255, 255), 0, 0, 0, "VIDAS: %d / PONTOS: %d", personagem_principal.vidas, personagem_principal.pontos);
             }
@@ -284,22 +325,19 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
     delete[] inimigos;
     delete[] balas;
     delete[] balas_2;
+    delete[] coracoes;
 
     al_destroy_sample(ataque);
     al_destroy_sample(morte_inimigo);
     al_destroy_sample(morte_personagem);
     al_destroy_sample(hit);
+    al_destroy_sample(item);
     al_destroy_audio_stream(musica);
 
     al_destroy_display(display);
     al_destroy_timer(timer);
     al_destroy_font(font20);
     al_destroy_event_queue(fila_eventos);
-
-
-
-
-
 
 //___________________________________________
     return 0;
