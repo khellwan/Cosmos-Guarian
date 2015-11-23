@@ -1,16 +1,5 @@
 #include "includes.h"
 
-void InitBalas (Projetil balas[], int tamanho)
-{
-    int i;
-    for (i = 0; i < tamanho; i++)
-    {
-        balas[i].ID = PROJETIL;
-        balas[i].velocidade = 10;
-        balas[i].ativo = false;
-        balas[i].bmp = NULL;
-    }
-}
 void AtiraBalas (Projetil balas[], int tamanho, Personagem personagem_principal, int y)
 {
     int i;
@@ -25,29 +14,7 @@ void AtiraBalas (Projetil balas[], int tamanho, Personagem personagem_principal,
         }
     }
 }
-void AtualizaBalas (Projetil balas[], int tamanho)
-{
-    int i;
-    for (i = 0; i < tamanho; i++)
-    {
-        if (balas[i].ativo)
-        {
-            balas[i].x += balas[i].velocidade;
 
-            if (balas[i].x > LARGURA_T)
-                balas[i].ativo = false;
-        }
-    }
-}
-void DesenhaBalas (Projetil balas[], int tamanho)
-{
-    int i;
-    for (i = 0; i < tamanho; i++)
-    {
-        if (balas[i].ativo)
-             al_draw_bitmap(balas[i].bmp, balas[i].x, balas[i].y, 0); //mem leak
-    }
-}
 void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_tamanho, Personagem &personagem_principal, int &dificuldade, ALLEGRO_SAMPLE *morte_inimigo)
 {
     int i, j;

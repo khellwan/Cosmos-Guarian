@@ -33,6 +33,8 @@ Projetil* balas = new Projetil [NUM_BALAS];
 Projetil* balas_2 = new Projetil [NUM_BALAS];
 Inimigo* inimigos = new Inimigo[NUM_INIMIGOS];
 Coracao* coracoes = new Coracao[NUM_ITENS];
+Speed* speed = new Speed[NUM_ITENS];
+Energia* energia = new Energia[NUM_ITENS];
 Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
 
@@ -91,16 +93,24 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
 // -------- FUNÇÕES INICIAIS --------
     srand(time(NULL));
-    InitPersonagem(personagem_principal);
+    personagem_principal.InitPersonagem();
 
-    InitBalas(balas, NUM_BALAS);
-    InitBalas(balas_2, NUM_BALAS);
+    for (i = 0; i < NUM_BALAS; i++)
+    {
+        balas[i].InitBalas();
+        balas_2[i].InitBalas();
+    }
 
-    InitInimigo(inimigos, NUM_INIMIGOS);
+
+    for (i = 0; i < NUM_INIMIGOS; i++)
+        inimigos[i].InitInimigo();
 
     for (i = 0; i < NUM_ITENS; i++)
+    {
         coracoes[i].InitItem();
-
+        speed[i].InitItem();
+        energia[i].InitItem();
+    }
     InitPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
 
     ataque = al_load_sample("laser.wav");
@@ -120,6 +130,10 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
         inimigos[i].bmp = al_load_bitmap("enemyRed.png");
      for (i = 0; i < NUM_ITENS; i++)
         coracoes[i].imagem = al_load_bitmap("heart.png");
+    for (i = 0; i < NUM_ITENS; i++)
+        speed[i].imagem = al_load_bitmap("speed.png");
+    for (i = 0; i < NUM_ITENS; i++)
+        energia[i].imagem = al_load_bitmap("energia.png");
 
 
 // __________________________________
@@ -206,8 +220,12 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 personagem_principal.MoveDireita(LARGURA_T);
             if (teclas[ESPACO])
             {
-                AtualizaBalas(balas, NUM_BALAS);
-                AtualizaBalas(balas_2, NUM_BALAS);
+                for (i = 0; i < NUM_BALAS; i++)
+                {
+                    balas[i].AtualizaBalas();
+                    balas_2[i].AtualizaBalas();
+                }
+
             }
 
 
@@ -217,18 +235,27 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 al_set_audio_stream_playing(musica, true);
 
                 AtualizaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
-                GeraInimigos(inimigos, NUM_INIMIGOS);
-                AtualizaInimigos(inimigos, NUM_INIMIGOS);
-
-                BalaColidida(balas, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
-                BalaColidida(balas_2, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
-                InimigoColidido(inimigos, NUM_INIMIGOS, personagem_principal, hit);
-
                 for (i = 0; i < NUM_INIMIGOS; i++)
+                {
+                    inimigos[i].GeraInimigos();
+                    inimigos[i].AtualizaInimigos();
+                    inimigos[i].InimigoColidido(personagem_principal, hit);
+                }
+
+                    BalaColidida(balas, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                    BalaColidida(balas_2, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+
+                for (i = 0; i < NUM_ITENS; i++)
                 {
                     coracoes[i].GeraItens(inimigos[i]);
                     coracoes[i].AtualizaItens();
                     coracoes[i].ItemColidido(personagem_principal, item);
+                    speed[i].GeraItens(inimigos[i]);
+                    speed[i].AtualizaItens();
+                    speed[i].ItemColidido(personagem_principal, item);
+                    energia[i].GeraItens(inimigos[i]);
+                    energia[i].AtualizaItens();
+                    energia[i].ItemColidido(personagem_principal, item);
                 }
 
 
@@ -254,15 +281,25 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 {
                     al_destroy_audio_stream(musica);
 
-                    InitPersonagem(personagem_principal);
+                    personagem_principal.InitPersonagem();
 
-                    InitBalas(balas, NUM_BALAS);
-                    InitBalas(balas_2, NUM_BALAS);
+                    for (i = 0; i < NUM_BALAS; i++)
+                    {
+                        balas[i].InitBalas();
+                        balas_2[i].InitBalas();
+                    }
 
-                    InitInimigo(inimigos, NUM_INIMIGOS);
+
+                    for (i = 0; i < NUM_INIMIGOS; i++)
+                        inimigos[i].InitInimigo();
 
                     for (i = 0; i < NUM_ITENS; i++)
+                    {
                         coracoes[i].InitItem();
+                        speed[i].InitItem();
+                        energia[i].InitItem();
+                    }
+
 
                     personagem_principal.bmp = al_load_bitmap("ship.png");
                     musica = al_load_audio_stream("trilha_sonora.ogg", 4, 1024);
@@ -276,6 +313,8 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                     {
                         inimigos[i].bmp = al_load_bitmap("enemyRed.png");
                         coracoes[i].imagem = al_load_bitmap("heart.png");
+                        speed[i].imagem = al_load_bitmap("heart.png");
+                        energia[i].imagem = al_load_bitmap("heart.png");
                     }
 
                     game_over = false;
@@ -296,12 +335,22 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
             if(!game_over)
             {
                 DesenhaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
-                DesenhaPersonagem(personagem_principal);
-                DesenhaBalas(balas, NUM_BALAS);
-                DesenhaBalas(balas_2, NUM_BALAS);
-                DesenhaInimigos(inimigos, NUM_INIMIGOS);
+                personagem_principal.DesenhaPersonagem();
+                for (i = 0; i < NUM_BALAS; i++)
+                {
+                    balas[i].DesenhaBalas();
+                    balas_2[i].DesenhaBalas();
+                }
+
+                for (i = 0; i < NUM_INIMIGOS; i++)
+                    inimigos[i].DesenhaInimigos();
                 for (i = 0; i < NUM_ITENS; i++)
+                {
                     coracoes[i].DesenhaItens();
+                    speed[i].DesenhaItens();
+                    energia[i].DesenhaItens();
+                }
+
 
                 al_draw_textf(font20, al_map_rgb(255, 255, 255), 0, 0, 0, "VIDAS: %d / PONTOS: %d", personagem_principal.vidas, personagem_principal.pontos);
             }
@@ -326,6 +375,8 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
     delete[] balas;
     delete[] balas_2;
     delete[] coracoes;
+    delete[] speed;
+    delete[] energia;
 
     al_destroy_sample(ataque);
     al_destroy_sample(morte_inimigo);
