@@ -204,3 +204,89 @@
 1448305580 source:c:\users\thiago\desktop\final\final\projetil.cpp
 	"includes.h"
 
+1448281348 source:c:\users\lucas\desktop\final-master\estrelas.cpp
+	"includes.h"
+
+1448281348 c:\users\lucas\desktop\final-master\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"variaveis_globais.hpp"
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"items.h"
+
+1448281348 c:\users\lucas\desktop\final-master\variaveis_globais.hpp
+
+1448304885 c:\users\lucas\desktop\final-master\personagem.hpp
+
+1448307674 c:\users\lucas\desktop\final-master\projetil.hpp
+	"inimigo.hpp"
+
+1448307354 c:\users\lucas\desktop\final-master\inimigo.hpp
+	"includes.h"
+
+1448281348 c:\users\lucas\desktop\final-master\estrelas.hpp
+	"variaveis_globais.hpp"
+
+1448281348 c:\users\lucas\desktop\final-master\items.h
+	"includes.h"
+
+1448307797 source:c:\users\lucas\desktop\final-master\main.cpp
+	"includes.h"
+
+1448307628 source:c:\users\lucas\desktop\final-master\projetil.cpp
+	"includes.h"
+
+1448284948 source:c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\estrelas.cpp
+	"includes.h"
+
+1448318422 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\includes.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<time.h>
+	"variaveis_globais.hpp"
+	"selecionar.h"
+	"personagem.hpp"
+	"projetil.hpp"
+	"inimigo.hpp"
+	"estrelas.hpp"
+	"items.h"
+
+1448324464 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\variaveis_globais.hpp
+
+1448315373 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\personagem.hpp
+
+1448311274 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\projetil.hpp
+	"inimigo.hpp"
+
+1448325384 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\inimigo.hpp
+	"includes.h"
+
+1448315373 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\estrelas.hpp
+
+1448284948 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\items.h
+	"includes.h"
+
+1448325384 source:c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\main.cpp
+	"includes.h"
+
+1448317666 source:c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\projetil.cpp
+	"includes.h"
+
+1448323633 c:\users\thiago\desktop\amin\final-master - cópia (2)\final-master - cópia (2)\selecionar.h
+

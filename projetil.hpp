@@ -30,6 +30,7 @@ public:
                 ativo = false;
         }
     }
+
     void DesenhaBalas ()
     {
         if (ativo)

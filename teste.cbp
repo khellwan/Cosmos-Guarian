@@ -41,6 +41,7 @@
 		<Unit filename="personagem.hpp" />
 		<Unit filename="projetil.cpp" />
 		<Unit filename="projetil.hpp" />
+		<Unit filename="selecionar.h" />
 		<Unit filename="variaveis_globais.hpp" />
 		<Extensions>
 			<code_completion />

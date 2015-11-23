@@ -1,6 +1,5 @@
 #ifndef ESTRELAS_HPP_INCLUDED
 #define ESTRELAS_HPP_INCLUDED
-#include "variaveis_globais.hpp"
 
 class Estrelas
 {
@@ -9,6 +8,7 @@ public:
     int x;
     int y;
     int velocidade;
+
 };
 
 void InitPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, int e_tamanho);

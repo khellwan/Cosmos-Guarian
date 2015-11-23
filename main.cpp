@@ -13,11 +13,19 @@ ALLEGRO_SAMPLE *morte_personagem = NULL;
 ALLEGRO_SAMPLE *hit = NULL;
 ALLEGRO_SAMPLE *item = NULL;
 ALLEGRO_AUDIO_STREAM *musica = NULL;
+/** Mudança aqui*/
+ALLEGRO_BITMAP *start = NULL;
+/** Fim Mudança*/
 
 
 bool fim = false;
+/** Mudança aqui*/
+bool menu = true;
+int flag = 0;
+/** Fim Mudança*/
 bool desenha = true;
 bool game_over = false;
+bool Tem_boss;
 bool teclas[] = {false, false, false, false, false, false};
 int i;
 int dificuldade;
@@ -29,9 +37,12 @@ int dificuldade;
 // -------- INICIALIZAÇÃO DE OBJETOS --------
 dificuldade = 0;
 Personagem personagem_principal;
+Selecionar select;
 Projetil* balas = new Projetil [NUM_BALAS];
 Projetil* balas_2 = new Projetil [NUM_BALAS];
 Inimigo* inimigos = new Inimigo[NUM_INIMIGOS];
+Inimigo* inimigos2 = new Inimigo [NUM_INIMIGOS];
+Inimigo* boss = new Inimigo [1];
 Coracao* coracoes = new Coracao[NUM_ITENS];
 Speed* speed = new Speed[NUM_ITENS];
 Energia* energia = new Energia[NUM_ITENS];
@@ -57,7 +68,7 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
         return -1;
     }
 
-
+    al_set_window_title(display, "Cosmos Guardian");
 
 
 // ____________________________________________________
@@ -94,6 +105,7 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 // -------- FUNÇÕES INICIAIS --------
     srand(time(NULL));
     personagem_principal.InitPersonagem();
+    select.InitSelecionar();
 
     for (i = 0; i < NUM_BALAS; i++)
     {
@@ -102,8 +114,12 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
     }
 
 
-    for (i = 0; i < NUM_INIMIGOS; i++)
-        inimigos[i].InitInimigo();
+    for (i = 0; i < NUM_INIMIGOS; i++){
+        inimigos[i].InitInimigo(7, 46, 47 ,1, 0);
+        inimigos2[i].InitInimigo(3, 55, 94 , 3, 0);
+    }
+
+    boss[0].InitInimigo(1, 100, 100, 100, 1);
 
     for (i = 0; i < NUM_ITENS; i++)
     {
@@ -119,6 +135,12 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
     hit = al_load_sample("hit.wav");
     item = al_load_sample("item.wav");
     musica = al_load_audio_stream("trilha_sonora.ogg", 4, 1024);
+
+    /** Mudança aqui*/
+    start = al_load_bitmap("start.jpg");
+    select.bmp = al_load_bitmap("select.png");
+    /** Fim Mudança*/
+
     personagem_principal.bmp = al_load_bitmap("ship.png");
 
     for (i = 0; i < NUM_BALAS; i++)
@@ -126,9 +148,14 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
         balas[i].bmp = al_load_bitmap("bala.png");
         balas_2[i].bmp = al_load_bitmap("bala.png");
     }
-    for (i = 0; i < NUM_INIMIGOS; i++)
+    for (i = 0; i < NUM_INIMIGOS; i++){
         inimigos[i].bmp = al_load_bitmap("enemyRed.png");
-     for (i = 0; i < NUM_ITENS; i++)
+        inimigos2[i].bmp = al_load_bitmap("enemyWhite.png");
+    }
+
+    boss[0].bmp = al_load_bitmap("boss.png");
+
+    for (i = 0; i < NUM_ITENS; i++)
         coracoes[i].imagem = al_load_bitmap("heart.png");
     for (i = 0; i < NUM_ITENS; i++)
         speed[i].imagem = al_load_bitmap("speed.png");
@@ -174,11 +201,14 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
             case ALLEGRO_KEY_SPACE:
                 teclas[ESPACO] = true;
                 AtiraBalas(balas, NUM_BALAS, personagem_principal, personagem_principal.y + 12);
-                AtiraBalas(balas_2, NUM_BALAS, personagem_principal, personagem_principal.y + 70);
+                AtiraBalas(balas_2, NUM_BALAS, personagem_principal, personagem_principal.y + 50);
                 al_play_sample(ataque, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
                 break;
             case ALLEGRO_KEY_ENTER:
                 teclas[ENTER] = true;
+                break;
+            case ALLEGRO_KEY_BACKSPACE:
+                teclas[BACKSPACE] = true;
                 break;
             }
         }
@@ -201,6 +231,9 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 break;
             case ALLEGRO_KEY_ENTER:
                 teclas[ENTER] = false;
+                break;
+            case ALLEGRO_KEY_BACKSPACE:
+                teclas[BACKSPACE] = false;
                 break;
 
             }
@@ -228,22 +261,57 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
             }
 
+            /** Mudança aqui*/
+            if(menu)
+            {
+                if (teclas[CIMA] && select.y!=235)
+                    select.y -= 70;
+                if (teclas[BAIXO] && select.y!=305)
+                    select.y += 70;
+                if (teclas[ENTER] && select.y==235)
+                    menu = false;
+            }
 
-            if(!game_over)
+            if(!game_over && !menu)
+            /** Fim da Mudança*/
             {
                 al_attach_audio_stream_to_mixer(musica, al_get_default_mixer());
                 al_set_audio_stream_playing(musica, true);
 
                 AtualizaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
-                for (i = 0; i < NUM_INIMIGOS; i++)
                 {
-                    inimigos[i].GeraInimigos();
-                    inimigos[i].AtualizaInimigos();
-                    inimigos[i].InimigoColidido(personagem_principal, hit);
+                    for (i = 0; i < NUM_INIMIGOS; i++)
+                    {
+                        if(!Tem_boss)
+                        {
+                            inimigos[i].GeraInimigos();
+                            inimigos2[i].GeraInimigos();
+                        }
+
+                        inimigos[i].AtualizaInimigos();
+                        inimigos[i].InimigoColidido(personagem_principal, hit);
+                        inimigos2[i].AtualizaInimigos();
+                        inimigos2[i].InimigoColidido(personagem_principal, hit);
+
+                    }
                 }
 
-                    BalaColidida(balas, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
-                    BalaColidida(balas_2, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                if(personagem_principal.pontos > 50 && personagem_principal.pontos < 75)
+                {
+                    boss[0].GeraInimigos();
+                    boss[0].AtualizaInimigos();
+                    boss[0].InimigoColidido(personagem_principal, hit);
+                    Tem_boss = true;
+                }
+                else
+                    Tem_boss = false;
+
+                BalaColidida(balas, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                BalaColidida(balas_2, NUM_BALAS, inimigos, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                BalaColidida(balas, NUM_BALAS, inimigos2, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                BalaColidida(balas_2, NUM_BALAS, inimigos2, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                BalaColidida(balas, NUM_BALAS, boss, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
+                BalaColidida(balas_2, NUM_BALAS, boss, NUM_INIMIGOS, personagem_principal, dificuldade, morte_inimigo);
 
                 for (i = 0; i < NUM_ITENS; i++)
                 {
@@ -261,8 +329,10 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
                 if ((dificuldade+1)%11 == 0) // Dificuldade aumenta a cada 10 pontos.
                 {
-                    for (i = 0; i < NUM_INIMIGOS; i++)
+                    for (i = 0; i < NUM_INIMIGOS; i++){
                         inimigos[i].velocidade++;
+                        inimigos2[i].velocidade++;
+                    }
 
                     dificuldade = 0;
                 }
@@ -274,7 +344,9 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 }
             }
 
-            else
+            /** Mudança aqui*/
+            else if (!menu)
+            /** Fim da Mudança*/
             {
                 al_set_audio_stream_playing(musica, false);
                 if (teclas[ENTER])
@@ -291,7 +363,11 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
 
                     for (i = 0; i < NUM_INIMIGOS; i++)
-                        inimigos[i].InitInimigo();
+                    {
+                        inimigos[i].InitInimigo(7, 46, 47, 1, 0);
+                        inimigos2[i].InitInimigo(3, 60, 60, 3, 0);
+                    }
+                    boss[0].InitInimigo(1, 100, 100, 100, 1);
 
                     for (i = 0; i < NUM_ITENS; i++)
                     {
@@ -312,10 +388,12 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                     for (i = 0; i < NUM_INIMIGOS; i++)
                     {
                         inimigos[i].bmp = al_load_bitmap("enemyRed.png");
+                        inimigos2[i].bmp = al_load_bitmap("enemyWhite.png");
                         coracoes[i].imagem = al_load_bitmap("heart.png");
                         speed[i].imagem = al_load_bitmap("heart.png");
                         energia[i].imagem = al_load_bitmap("heart.png");
                     }
+                    boss[0].bmp = al_load_bitmap("boss.png");
 
                     game_over = false;
                 }
@@ -332,7 +410,31 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
         {
             desenha = false;
 
-            if(!game_over)
+            /** Mudança aqui*/
+            if(menu)
+            {
+                al_draw_bitmap(start, 0, 0, 0);
+                if (select.ativo)
+                    al_draw_bitmap(select.bmp, select.x, select.y, 0);
+
+                if (teclas[ENTER] && flag == 0)
+                {
+                    flag = 1;
+                    teclas[BACKSPACE] = false;
+                    select.ativo = false;
+                    start = al_load_bitmap("como_jogar.jpg");
+                    al_draw_bitmap(start, 0, 0, 0);
+                }
+                else if (teclas[BACKSPACE] && flag == 1)
+                {
+                    flag = 0;
+                    select.ativo = true;
+                    start = al_load_bitmap("start.jpg");
+                    al_draw_bitmap(start, 0, 0, 0);
+                }
+            }
+            /** Fim da Mudança*/
+            if(!game_over && !menu)
             {
                 DesenhaPlanoFundo(estrelas_pf, NUM_PLANOS, NUM_ESTRELAS);
                 personagem_principal.DesenhaPersonagem();
@@ -342,8 +444,11 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                     balas_2[i].DesenhaBalas();
                 }
 
-                for (i = 0; i < NUM_INIMIGOS; i++)
+                for (i = 0; i < NUM_INIMIGOS; i++){
                     inimigos[i].DesenhaInimigos();
+                    inimigos2[i].DesenhaInimigos();
+                }
+                boss[0].DesenhaInimigos();
                 for (i = 0; i < NUM_ITENS; i++)
                 {
                     coracoes[i].DesenhaItens();
@@ -355,7 +460,7 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
                 al_draw_textf(font20, al_map_rgb(255, 255, 255), 0, 0, 0, "VIDAS: %d / PONTOS: %d", personagem_principal.vidas, personagem_principal.pontos);
             }
 
-            else
+            else if (!menu)
             {
                 al_draw_textf(font20, al_map_rgb(255, 255, 255), LARGURA_T / 2, ALTURA_T / 2, ALLEGRO_ALIGN_CENTRE, "FIM DE JOGO. SEUS PONTOS FORAM: %d. TECLE ENTER PARA JOGAR NOVAMENTE OU ESC PARA SAIR DO JOGO.", personagem_principal.pontos);
             }
@@ -372,11 +477,15 @@ Estrelas estrelas_pf[NUM_PLANOS][NUM_ESTRELAS];
 
 // -------- FINALIZAÇÕES DO PROGRAMA --------
     delete[] inimigos;
+    delete[] inimigos2;
+    delete[] boss;
     delete[] balas;
     delete[] balas_2;
     delete[] coracoes;
     delete[] speed;
     delete[] energia;
+
+
 
     al_destroy_sample(ataque);
     al_destroy_sample(morte_inimigo);

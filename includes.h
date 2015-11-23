@@ -11,6 +11,7 @@
 #include <allegro5/allegro_acodec.h>
 #include <time.h>
 #include "variaveis_globais.hpp"
+#include "selecionar.h"
 #include "personagem.hpp"
 #include "projetil.hpp"
 #include "inimigo.hpp"

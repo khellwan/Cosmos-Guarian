@@ -12,23 +12,29 @@ public:
     int velocidade;
     int borda_x;
     int borda_y;
+    int vidas;
+    int vidas_max;
     int tipo;
     bool ativo;
 
-    void InitInimigo()
+    void InitInimigo(int v, int x, int y, int vida, int tipos)
     {
+        vidas = vida;
+        vidas_max = vida;
         ID = INIMIGOS;
-        velocidade = 7;
-        borda_x = 77;
-        borda_y = 71;
+        velocidade = v;
+        borda_x = x;
+        borda_y = y;
         ativo = false;
         bmp = NULL;
+        tipo = tipos;
     }
+
     void GeraInimigos ()
     {
         if(!ativo)
         {
-            if(rand() % 500 == 0) //Geração aleatória de inimigos = 1 em 500.
+            if(rand() % (vidas_max*vidas_max*500) == 0) //Geração aleatória de inimigos = 1 em 500.
             {
                 x = LARGURA_T;
                 y = 30 + rand() % (ALTURA_T - 91); //Expressão que fornence um número dentro da tela do jogo.
@@ -36,16 +42,32 @@ public:
             }
         }
     }
+
+
+    // Sobrecarga para inimigo boss;
+    void GeraInimigos (int flag)
+    {
+        vidas = vidas_max;
+        if(!ativo)
+        {
+                x = LARGURA_T;
+                y = ALTURA_T/2;
+                ativo = true;
+        }
+    }
+
     void AtualizaInimigos ()
     {
         if (ativo)
             x -= velocidade;
     }
+
     void DesenhaInimigos ()
     {
         if (ativo)
             al_draw_bitmap(bmp, x, y, 0);
     }
+
     void InimigoColidido (Personagem &personagem_principal, ALLEGRO_SAMPLE *hit)
     {
         if (ativo)

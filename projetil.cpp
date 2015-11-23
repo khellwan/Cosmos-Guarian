@@ -7,7 +7,7 @@ void AtiraBalas (Projetil balas[], int tamanho, Personagem personagem_principal,
     {
         if (!balas[i].ativo)
         {
-            balas[i].x = personagem_principal.x + 53;
+            balas[i].x = personagem_principal.x + 30;
             balas[i].y = y;
             balas[i].ativo = true;
             break;
@@ -33,12 +33,20 @@ void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_ta
                         balas[i].y < (inimigos[j].y + inimigos[j].borda_y))
                     {
                         balas[i].ativo = false;
+                        inimigos[j].vidas--;
+                        if (inimigos[j].vidas <= 0)
+                        {
+                            if (inimigos[j].tipo == 1)
+                                personagem_principal.pontos += 24;
 
-                        inimigos[j].ativo = false;
+                            inimigos[j].ativo = false;
+                            dificuldade++;
+                            personagem_principal.pontos++;
+                        }
+
+
                         al_play_sample(morte_inimigo, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 
-                        personagem_principal.pontos++;
-                        dificuldade++;
                     }
                 }
             }
