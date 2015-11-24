@@ -1,7 +1,0 @@
-#ifndef DECLARACOES_HPP_INCLUDED
-#define DECLARACOES_HPP_INCLUDED
-#include "includes.h"
-
-
-
-#endif // DECLARACOES_HPP_INCLUDED
