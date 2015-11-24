@@ -154,10 +154,10 @@
 1448239248 source:c:\users\thiago\desktop\amin\final-master\final-master\final-master\projetil.cpp
 	"includes.h"
 
-1448195338 source:c:\users\thiago\desktop\final\final\estrelas.cpp
+1448340031 source:c:\users\thiago\desktop\final\final\estrelas.cpp
 	"includes.h"
 
-1448301767 c:\users\thiago\desktop\final\final\includes.h
+1448327923 c:\users\thiago\desktop\final\final\includes.h
 	<allegro5/allegro.h>
 	<allegro5/allegro_native_dialog.h>
 	<allegro5/allegro_primitives.h>
@@ -167,6 +167,7 @@
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 	<time.h>
+	"selecionar.h"
 	"variaveis_globais.hpp"
 	"personagem.hpp"
 	"projetil.hpp"
@@ -174,20 +175,20 @@
 	"estrelas.hpp"
 	"items.h"
 
-1448306363 c:\users\thiago\desktop\final\final\personagem.hpp
+1448339758 c:\users\thiago\desktop\final\final\personagem.hpp
 
-1448305593 c:\users\thiago\desktop\final\final\projetil.hpp
+1448340031 c:\users\thiago\desktop\final\final\projetil.hpp
 	"inimigo.hpp"
 
-1448304074 c:\users\thiago\desktop\final\final\inimigo.hpp
+1448394703 c:\users\thiago\desktop\final\final\inimigo.hpp
 	"includes.h"
 
-1448195338 c:\users\thiago\desktop\final\final\estrelas.hpp
+1448340031 c:\users\thiago\desktop\final\final\estrelas.hpp
 	"variaveis_globais.hpp"
 
-1448304303 c:\users\thiago\desktop\final\final\variaveis_globais.hpp
+1448335750 c:\users\thiago\desktop\final\final\variaveis_globais.hpp
 
-1448306363 c:\users\thiago\desktop\final\final\items.h
+1448394792 c:\users\thiago\desktop\final\final\items.h
 	"includes.h"
 
 1448241037 source:c:\users\thiago\desktop\final\final\inimigo.cpp
@@ -195,13 +196,13 @@
 
 1448300280 source:c:\users\thiago\desktop\final\final\items.cpp
 
-1448304895 source:c:\users\thiago\desktop\final\final\main.cpp
+1448340585 source:c:\users\thiago\desktop\final\final\main.cpp
 	"includes.h"
 
 1448241127 source:c:\users\thiago\desktop\final\final\personagem.cpp
 	"includes.h"
 
-1448305580 source:c:\users\thiago\desktop\final\final\projetil.cpp
+1448394703 source:c:\users\thiago\desktop\final\final\projetil.cpp
 	"includes.h"
 
 1448281348 source:c:\users\lucas\desktop\final-master\estrelas.cpp
@@ -377,4 +378,6 @@
 
 1448340031 source:c:\users\thiago\desktop\roginibiret\roginibiret\projetil.cpp
 	"includes.h"
+
+1448304940 c:\users\thiago\desktop\final\final\selecionar.h
 

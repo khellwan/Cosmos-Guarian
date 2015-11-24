@@ -35,8 +35,6 @@ void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_ta
                         inimigos[j].vidas --;
                         if (inimigos[j].vidas <= 0)
                         {
-                            if(inimigos[j].tipo == 1)
-                                personagem_principal.pontos += 24;
                             personagem_principal.pontos++;
                             dificuldade++;
                             inimigos[j].ativo = false;
