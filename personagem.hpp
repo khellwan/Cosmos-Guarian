@@ -15,6 +15,7 @@ public:
     int pontos;
     int energia;
 
+    //Inicia o personagem com valores padrões
     void InitPersonagem()
     {
         x = 20;
@@ -22,17 +23,20 @@ public:
         ID = JOGADOR;
         vidas = 3;
         velocidade = 5;
-        borda_x = 15;
-        borda_y = 15;
+        borda_x = 40;
+        borda_y = 50;
         bmp = NULL;
         pontos = 0;
         energia = 0;
     }
+
+    //Desenha o Personagem
     void DesenhaPersonagem()
     {
         al_draw_bitmap(bmp, x, y, 0);
     }
 
+    //Move o personagem para cima
     void MoveCima()
     {
         y -= velocidade;
@@ -41,6 +45,7 @@ public:
             y = 9;
 
     }
+    //Move o personagem para baixo
     void MoveBaixo(int ALTURA_T)
     {
         y += velocidade;
@@ -49,6 +54,7 @@ public:
             y = ALTURA_T-90;
 
     }
+    //Move o personagem para esquerda
     void MoveEsquerda()
     {
         x -= velocidade;
@@ -57,14 +63,13 @@ public:
             x = 0;
 
     }
+    //Move o personagem para direita
     void MoveDireita(int LARGURA_T)
     {
         x += velocidade;
 
         if (x > LARGURA_T-90) // Ajuste para não sair do mapa pela direita.
             x = LARGURA_T-90;
-
     }
 };
-
 #endif // PERSONAGEM_HPP_INCLUDED

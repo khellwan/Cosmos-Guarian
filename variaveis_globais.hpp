@@ -4,7 +4,7 @@
 const int LARGURA_T = 800;
 const int ALTURA_T = 600;
 const int FPS = 60;
-const int NUM_BALAS = 10;
+const int NUM_BALAS = 20;
 const int NUM_INIMIGOS = 10;
 const int NUM_ITENS = 10;
 const int NUM_ESTRELAS = 100;

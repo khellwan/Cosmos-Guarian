@@ -17,8 +17,10 @@ public:
     int tipo;
     bool ativo;
 
+    // Inicia os inimigos com valores passados por parâmetros
     void InitInimigo(int v, int x, int y, int vida, int tipos)
     {
+        tipo = tipos;
         vidas = vida;
         vidas_max = vida;
         ID = INIMIGOS;
@@ -27,15 +29,22 @@ public:
         borda_y = y;
         ativo = false;
         bmp = NULL;
-        tipo = tipos;
     }
 
+    // Essa função é responsável por gerar inimigos em posições aletórias e em momentos aleatórios
     void GeraInimigos ()
     {
         if(!ativo)
         {
-            if(rand() % (vidas_max*vidas_max*500) == 0) //Geração aleatória de inimigos = 1 em 500.
+            if (tipo == 1){
+                vidas = vidas_max;
+                x = LARGURA_T;
+                y = ALTURA_T/2 - 225;
+                ativo = true;
+            }
+            if(rand() % (vidas_max*vidas_max*800) == 0) //Geração aleatória de inimigos
             {
+                vidas = vidas_max;
                 x = LARGURA_T;
                 y = 30 + rand() % (ALTURA_T - 91); //Expressão que fornence um número dentro da tela do jogo.
                 ativo = true;
@@ -43,22 +52,14 @@ public:
         }
     }
 
-
-    // Sobrecarga para inimigo boss;
-    void GeraInimigos (int flag)
-    {
-        vidas = vidas_max;
-        if(!ativo)
-        {
-                x = LARGURA_T;
-                y = ALTURA_T/2;
-                ativo = true;
-        }
-    }
-
+    // Faz os inimigos se moverem
     void AtualizaInimigos ()
     {
-        if (ativo)
+        ID++;
+        if (ID == 10)
+            ID = 0;
+        if (tipo==1 && x<LARGURA_T);
+        else if (ativo)
             x -= velocidade;
     }
 
@@ -68,26 +69,27 @@ public:
             al_draw_bitmap(bmp, x, y, 0);
     }
 
+    // Checa colisões dos inimigos com o personagem
     void InimigoColidido (Personagem &personagem_principal, ALLEGRO_SAMPLE *hit)
     {
         if (ativo)
         {
-            if ((x - borda_x) < (personagem_principal.x + personagem_principal.borda_x) &&
-                (x + borda_x) > (personagem_principal.x - personagem_principal.borda_x) &&
-                (y - borda_y) < (personagem_principal.y + personagem_principal.borda_y) &&
-                (y + borda_y) > (personagem_principal.y - personagem_principal.borda_y))
+            if  (x < (personagem_principal.x + personagem_principal.borda_x) &&
+                (x + borda_x) > (personagem_principal.x) &&
+                y < (personagem_principal.y + personagem_principal.borda_y) &&
+                (y + borda_y) > (personagem_principal.y))
             {
 
               ativo = false;
               al_play_sample(hit, 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-              personagem_principal.vidas--;
+                personagem_principal.vidas--;
 
             }
 
             else if (x < 0)
             {
-                ativo = false;
                 personagem_principal.vidas--;
+                ativo = false;
             }
         }
     }

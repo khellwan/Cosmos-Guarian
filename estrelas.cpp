@@ -1,5 +1,6 @@
 #include "includes.h"
 
+//Inicializa o plano de fundo (3 camadas, por isso a matriz)
 void InitPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, int e_tamanho)
 {
     int i, j;
@@ -31,6 +32,7 @@ void InitPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, int e_
         }
     }
 }
+//Faz os planos de fundo se mexerem
 void AtualizaPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, int e_tamanho)
 {
     int i, j;
@@ -62,6 +64,8 @@ void AtualizaPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, in
         }
     }
 }
+
+// Desenha as estrelas do plano de fundo
 void DesenhaPlanoFundo(Estrelas estrelas_pf[][NUM_ESTRELAS], int pf_tamanho, int e_tamanho)
 {
     int i, j;
