@@ -42,7 +42,7 @@ public:
                 y = ALTURA_T/2 - 225;
                 ativo = true;
             }
-            if(rand() % (vidas_max*vidas_max*680) == 0) //Geração aleatória de inimigos
+            if(rand() % (vidas_max*vidas_max*500) == 0) //Geração aleatória de inimigos
             {
                 vidas = vidas_max;
                 x = LARGURA_T;

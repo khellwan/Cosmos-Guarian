@@ -41,7 +41,7 @@ public:
     {
         if(!inimigo.ativo)
         {
-            if(rand() % 4500 == 0) //Geração aleatória de itens = 1 em 4500.
+            if(rand() % 5800 == 0) //Geração aleatória de itens = 1 em 5800.
             {
                 if (inimigo.x > LARGURA_T/2)
                     x = inimigo.x;

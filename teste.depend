@@ -180,7 +180,7 @@
 1448340031 c:\users\thiago\desktop\final\final\projetil.hpp
 	"inimigo.hpp"
 
-1448394703 c:\users\thiago\desktop\final\final\inimigo.hpp
+1448413514 c:\users\thiago\desktop\final\final\inimigo.hpp
 	"includes.h"
 
 1448340031 c:\users\thiago\desktop\final\final\estrelas.hpp
@@ -188,7 +188,7 @@
 
 1448335750 c:\users\thiago\desktop\final\final\variaveis_globais.hpp
 
-1448394792 c:\users\thiago\desktop\final\final\items.h
+1448413469 c:\users\thiago\desktop\final\final\items.h
 	"includes.h"
 
 1448241037 source:c:\users\thiago\desktop\final\final\inimigo.cpp
@@ -196,7 +196,7 @@
 
 1448300280 source:c:\users\thiago\desktop\final\final\items.cpp
 
-1448340585 source:c:\users\thiago\desktop\final\final\main.cpp
+1448413469 source:c:\users\thiago\desktop\final\final\main.cpp
 	"includes.h"
 
 1448241127 source:c:\users\thiago\desktop\final\final\personagem.cpp

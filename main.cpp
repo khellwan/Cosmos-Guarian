@@ -113,8 +113,8 @@ Selecionar select;
     //Inicialização de inimigos
     for (i = 0; i < NUM_INIMIGOS; i++)
     {
-        inimigos[i].InitInimigo(7, 46, 85, 1 , 0);
-        inimigos2[i].InitInimigo(3, 55, 94, 3, 0);
+        inimigos[i].InitInimigo(7, 46, 85, 2 , 0);
+        inimigos2[i].InitInimigo(3, 55, 94, 5, 0);
     }
 
     //Inicialização de itens
@@ -350,8 +350,8 @@ Selecionar select;
 
                     for (i = 0; i < NUM_INIMIGOS; i++)
                     {
-                        inimigos[i].InitInimigo(7, 46, 85, 1 , 0);
-                        inimigos2[i].InitInimigo(3, 55, 94, 3, 0);
+                        inimigos[i].InitInimigo(7, 46, 85, 2 , 0);
+                        inimigos2[i].InitInimigo(3, 55, 94, 5, 0);
                     }
 
                     for (i = 0; i < NUM_ITENS; i++)
