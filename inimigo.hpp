@@ -36,7 +36,8 @@ public:
     {
         if(!ativo)
         {
-            if (tipo == 1){
+            if (tipo == 1)
+            {
                 vidas = vidas_max;
                 x = LARGURA_T;
                 y = ALTURA_T/2 - 225;

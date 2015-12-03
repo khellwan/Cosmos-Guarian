@@ -47,7 +47,5 @@ public:
 
 //Declaração de funções relacionadas as balas mas que não estão dentro da classe
 void AtiraBalas (Projetil balas[], int tamanho, Personagem personagem_principal, int y);
-void AtiraBalasBoss (Projetil balas[], int tamanho, Inimigo boss);
-void BalaColididaBoss (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_tamanho, Personagem &personagem_principal, ALLEGRO_SAMPLE *morte_inimigo);
 void BalaColidida (Projetil balas[], int b_tamanho, Inimigo inimigos[], int i_tamanho, Personagem &personagem_principal, int &dificuldade, ALLEGRO_SAMPLE *morte_inimigo);
 #endif // PROJETIL_HPP_INCLUDED
